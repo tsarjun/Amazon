@@ -24,7 +24,7 @@ pipeline {
 
         stage('compile') {
             steps {
-                dir('Amazon/Amazon') {
+                dir('Amazon/Amazon-core') {
                     sh 'mvn compile'
                 }
             }
@@ -32,7 +32,7 @@ pipeline {
 
         stage('test') {
             steps {
-                dir('Amazon/Amazon') {
+                dir('Amazon/Amazon-core') {
                     sh 'mvn test'
                 }
             }
@@ -40,7 +40,7 @@ pipeline {
 
         stage('build') {
             steps {
-                dir('Amazon/Amazon') {
+                dir('Amazon/Amazon-core') {
                     sh 'mvn clean install'
                 }
             }
