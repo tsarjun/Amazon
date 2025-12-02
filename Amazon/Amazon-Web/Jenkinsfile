@@ -38,7 +38,7 @@ pipeline{
             echo "Build Successfull"
         }
         failure{
-            echo "Build Failed"
+            echo "Build Failed to "
         }
     }
 }// Added feature 1
