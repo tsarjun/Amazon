@@ -3,7 +3,7 @@ pipeline{
     
     environment{
     GIT_BRANCH = 'master'
-    url = 'https://github.com/Aves4/Amazon_ABC.git'
+    url = 'https://github.com/tsarjun/Amazon.git'
     }
     stages{
         stage('clone project'){
