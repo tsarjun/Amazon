@@ -11,7 +11,7 @@ pipeline {
 
         stage('clean') {
             steps {
-                dir('Amazon/Amazon-web') {   // <-- folder containing pom.xml
+                dir('Amazon/Amazon/pom.xml') {   // <-- folder containing pom.xml
                     sh 'mvn clean'
                 }
             }
@@ -19,7 +19,7 @@ pipeline {
 
         stage('compile') {
             steps {
-                dir('Amazon/Amazon-web') {
+                dir('Amazon/Amazon/pom.xml') {
                     sh 'mvn compile'
                 }
             }
@@ -27,7 +27,7 @@ pipeline {
 
         stage('test') {
             steps {
-                dir('Amazon/Amazon-web') {
+                dir('Amazon/Amazon/pom.xml') {
                     sh 'mvn test'
                 }
             }
@@ -35,7 +35,7 @@ pipeline {
 
         stage('build') {
             steps {
-                dir('Amazon/Amazon-web') {
+                dir('Amazon/Amazon/pom.xml') {
                     sh 'mvn clean install'
                 }
             }
