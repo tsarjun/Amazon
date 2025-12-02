@@ -8,15 +8,10 @@ pipeline {
             }
         }
 
-        stage('List files') {
-            steps {
-                sh 'ls -R'
-            }
-        }
 
         stage('clean') {
             steps {
-                dir('Amazon/Amazon-core') {   // <-- folder containing pom.xml
+                dir('Amazon/Amazon') {   // <-- folder containing pom.xml
                     sh 'mvn clean'
                 }
             }
@@ -24,7 +19,7 @@ pipeline {
 
         stage('compile') {
             steps {
-                dir('Amazon/Amazon-core') {
+                dir('Amazon/Amazon') {
                     sh 'mvn compile'
                 }
             }
@@ -32,7 +27,7 @@ pipeline {
 
         stage('test') {
             steps {
-                dir('Amazon/Amazon-core') {
+                dir('Amazon/Amazon') {
                     sh 'mvn test'
                 }
             }
@@ -40,7 +35,7 @@ pipeline {
 
         stage('build') {
             steps {
-                dir('Amazon/Amazon-core') {
+                dir('Amazon/Amazon') {
                     sh 'mvn clean install'
                 }
             }
