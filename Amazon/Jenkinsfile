@@ -15,8 +15,16 @@ pipeline {
                 }
             }
         }
-
-        stage('compile') {
+  stage('List files') {
+            steps {
+                sh 'ls -R'
+            }
+        }
+        
+        // Maven stages will go here
+    }
+}        
+       stage('compile') {
             steps {
                 dir('Amazon/Amazon') {
                     sh 'mvn compile'
