@@ -8,23 +8,21 @@ pipeline {
             }
         }
 
-        stage('clean') {
-            steps {
-                dir('Amazon/Amazon') {        // <-- go to the folder with pom.xml
-                    sh 'mvn clean'
-                }
-            }
-        }
-  stage('List files') {
+        stage('List files') {
             steps {
                 sh 'ls -R'
             }
         }
-        
-        // Maven stages will go here
-    }
-}        
-       stage('compile') {
+
+        stage('clean') {
+            steps {
+                dir('Amazon/Amazon') {   // <-- folder containing pom.xml
+                    sh 'mvn clean'
+                }
+            }
+        }
+
+        stage('compile') {
             steps {
                 dir('Amazon/Amazon') {
                     sh 'mvn compile'
@@ -47,6 +45,5 @@ pipeline {
                 }
             }
         }
-
     } // closes stages
 } // closes pipeline
