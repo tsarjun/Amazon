@@ -16,7 +16,7 @@ pipeline {
 
         stage('clean') {
             steps {
-                dir('Amazon/Amazon') {   // <-- folder containing pom.xml
+                dir('Amazon/Amazon-core') {   // <-- folder containing pom.xml
                     sh 'mvn clean'
                 }
             }
