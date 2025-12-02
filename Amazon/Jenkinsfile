@@ -1,44 +1,44 @@
-pipeline {
+pipeline{
     agent any
-
-    stages {
-        stage('clone project') {
-            steps {
-                git branch: 'master', url: 'https://github.com/tsarjun/Amazon.git'
+    
+    environment{
+    GIT_BRANCH = 'master'
+    url = 'https://github.com/Aves4/Amazon_ABC.git'
+    }
+    stages{
+        stage('clone project'){
+            steps{
+                git branch:"${GIT_BRANCH}", url:"${url}"
             }
         }
-
-
-        stage('clean') {
-            steps {
-                dir('Amazon/Amazon/pom.xml') {   // <-- folder containing pom.xml
-                    sh 'mvn clean'
-                }
-            }
-        }
-
-        stage('compile') {
-            steps {
-                dir('Amazon/Amazon/pom.xml') {
+        stage('compile'){
+            steps{
+                dir('Amazon'){
                     sh 'mvn compile'
                 }
             }
         }
-
-        stage('test') {
-            steps {
-                dir('Amazon/Amazon/pom.xml') {
+        stage('test'){
+            steps{
+                dir('Amazon'){
                     sh 'mvn test'
                 }
             }
         }
-
-        stage('build') {
-            steps {
-                dir('Amazon/Amazon/pom.xml') {
+        stage('build'){
+            steps{
+                dir('Amazon'){
                     sh 'mvn clean install'
                 }
             }
         }
-    } // closes stages
-} // closes pipeline
+    }
+    post{
+        success{
+            echo "Build Successfull"
+        }
+        failure{
+            echo "Build Failed"
+        }
+    }
+}
