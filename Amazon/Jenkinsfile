@@ -1,1 +1,44 @@
-// Added feature 1
+pipeline{
+    agent any
+    
+    environment{
+    GIT_BRANCH = 'master'
+    url = 'https://github.com/tsarjun/Amazon.git'
+    }
+    stages{
+        stage('clone project'){
+            steps{
+                git branch:"${GIT_BRANCH}", url:"${url}"
+            }
+        }
+        stage('compile'){
+            steps{
+                dir('Amazon'){
+                    sh 'mvn compile'
+                }
+            }
+        }
+        stage('test'){
+            steps{
+                dir('Amazon'){
+                    sh 'mvn test'
+                }
+            }
+        }
+        stage('build'){
+            steps{
+                dir('Amazon'){
+                    sh 'mvn clean install'
+                }
+            }
+        }
+    }
+    post{
+        success{
+            echo "Build Successfull"
+        }
+        failure{
+            echo "Build Failed"
+        }
+    }
+}
